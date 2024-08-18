@@ -1,0 +1,30 @@
+name: Manual Download
+on:
+  workflow_dispatch:
+    inputs:
+      fileurl:
+        description: 'file url'
+        required: true
+        type: string
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-22.04
+    permissions:
+        contents: write
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: download
+      run: |
+        rm -rf output
+        mkdir output
+        cd output
+        url_dst="${{ inputs.fileurl }}"
+        url_dst=`curl -L --HEAD ${url_dst} -w %{url_effective} | tail -n 1`
+        echo $url_dst
+        wget -nv "$url_dst"
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: "output/*Setup.exe"
+        
