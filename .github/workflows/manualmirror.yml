@@ -26,5 +26,5 @@ jobs:
     - name: Create Release
       uses: softprops/action-gh-release@v2
       with:
-        files: "output/*Setup.exe"
+        files: "output/*.exe"
         
