@@ -39,8 +39,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: v0.1
-        release_name: Release test
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
         body: TODO New Release.
         draft: false
         prerelease: false
