@@ -38,4 +38,5 @@ jobs:
       with:
         name: v0.1
         tag_name: v0.1
+        files: "Scratch 3.29.1 Setup.exe"
         
